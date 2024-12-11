@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tech on Creao&#39;s Blog</title>
+    <link>http://localhost:1313/categories/tech/</link>
+    <description>Recent content in Tech on Creao&#39;s Blog</description>
+    <generator>Hugo -- 0.139.3</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 06 Oct 2024 15:27:58 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a QR Code Generator Web App with ChatGPT: A Journey from Marketing to Coding Success</title>
+      <link>http://localhost:1313/posts/first/</link>
+      <pubDate>Sun, 06 Oct 2024 15:27:58 +0800</pubDate>
+      <guid>http://localhost:1313/posts/first/</guid>
+      <description>&lt;h2 id=&#34;introduction-the-beginning-of-my-qr-code-journey&#34;&gt;Introduction: The Beginning of My QR Code Journey&lt;/h2&gt;
+&lt;p&gt;It all started with a simple need. I was working on a &lt;strong&gt;marketing campaign&lt;/strong&gt; and wanted to use &lt;strong&gt;QR codes&lt;/strong&gt; to make it easy for customers to access a landing page. However, as I began searching for QR code generation tools online, I quickly realized that most services charge a fee for features like color customization and high-quality downloads.&lt;/p&gt;
+&lt;p&gt;Frustrated with the paywalls, I thought, &amp;ldquo;Why should I pay for something I can build myself?&amp;rdquo; As a developer with some experience, I knew building a QR code generator wasn’t rocket science. Plus, I had heard of platforms like &lt;strong&gt;Cursor&lt;/strong&gt; and &lt;strong&gt;Replit&lt;/strong&gt;, which promised to help developers code without needing to write a lot of code. However, when I explored these tools, I found that setting them up felt like more effort than I wanted to invest for this project.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

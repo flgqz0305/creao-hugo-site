@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Bridging Sutton’s Vision with Modern AI Design | Creao&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+Source: LangChain
+In 2019, Rich Sutton published a thought-provoking piece titled “The Bitter Lesson”, reflecting on the progress of artificial intelligence over the last seventy years. Sutton argued that, in the long run, general-purpose methods that leverage massive computation have always outperformed human-designed, domain-specific approaches.
+This observation resonated deeply with many in the AI community, especially considering it predated the formal recognition of scaling laws that now guide much of our approach to AI development.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/post3_241104/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css" integrity="sha256-1vzSCk&#43;4bvpN&#43;sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/post3_241104/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Creao&#39;s Blog (Alt + H)">Creao&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/tags/" title="🏷️ Tags">
+                    <span>🏷️ Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="📁 Archives">
+                    <span>📁 Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 Search (Alt &#43; /)" accesskey=/>
+                    <span>🔍 Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.creao.ai" title="Creao.ai">
+                    <span>Creao.ai</span>&nbsp;
+                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Bridging Sutton’s Vision with Modern AI Design
+    </h1>
+    <div class="post-meta"><span title='2024-11-04 15:27:58 +0800 HKT'>November 4, 2024</span>&nbsp;·&nbsp;5 min
+
+</div>
+  </header> 
+  <div class="post-content"><p><img alt="alt" loading="lazy" src="/posts/post3_241104/image.png"></p>
+<p>Source: <a href="https://blog.langchain.dev/reflection-agents/">LangChain</a></p>
+<p>In 2019, <strong><a href="https://en.wikipedia.org/wiki/Richard_S._Sutton">Rich Sutton</a></strong> published a thought-provoking piece titled <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html"><em><strong>“The Bitter Lesson”</strong></em></a>, reflecting on the progress of artificial intelligence over the last seventy years. Sutton argued that, in the long run, <strong>general-purpose methods that leverage massive computation have always outperformed human-designed, domain-specific approaches.</strong></p>
+<p>This observation resonated deeply with many in the AI community, especially considering it predated the formal recognition of scaling laws that now guide much of our approach to AI development.</p>
+<p>Sutton’s vision was brilliant in its foresight. Before the era of multi-billion parameter models and scaling law theories, he pinpointed the <strong>core principle that would dominate modern AI: computation over human intuition.</strong> Sutton’s message was that progress in AI is not about building in our knowledge of the world — it’s about using computation and general learning mechanisms to discover it. Today, with the performance of large language models (LLMs) like GPT-3 and GPT-4, we see his vision manifest, as these models generalize across tasks without specialized structures designed by humans.</p>
+<p>Not everyone agreed with Sutton’s conclusions. <a href="https://en.wikipedia.org/wiki/Rodney_Brooks">Rodney Brooks</a>, a pioneer in robotics and AI, wrote a response titled <a href="https://rodneybrooks.com/a-better-lesson/"><em><strong>“A Better Lesson”</strong></em></a>, arguing that Sutton’s insistence on computation overlooked a critical point: <strong>practical AI systems often need carefully designed components to be efficient and effective.</strong> Brooks pointed out that even celebrated successes in deep learning — like convolutional neural networks (CNNs) for image recognition — embody human knowledge in their architectures. CNNs are designed to understand translational invariance, meaning they can recognize an object regardless of where it appears in the image. Brooks highlighted that without such built-in efficiencies, the computational costs of AI would skyrocket, and the human contribution to AI would simply shift from embedding knowledge to designing computational frameworks and datasets.</p>
+<h2 id="from-scaling-models-to-scaling-inference"><strong>From Scaling Models to Scaling Inference</strong><a hidden class="anchor" aria-hidden="true" href="#from-scaling-models-to-scaling-inference">#</a></h2>
+<p>Over the years, we have witnessed a shift in focus within the AI community. Initially, the emphasis was on building larger models — scaling up neural networks and training them on massive datasets. This led to breakthroughs like GPT-3, which surprised even its creators with its emergent capabilities. However, we are now seeing a transition towards leveraging agentic systems to scale computation at the inference stage, not just during training.</p>
+<p>Today, <strong>most of us use LLMs in a zero-shot mode</strong> — prompting the model to generate an output token by token without revisiting or revising its previous work. This approach is akin to asking someone to write an entire essay without backtracking or editing: it’s impressive that LLMs manage to perform so well in this manner, <strong>but it’s far from the iterative, reflective process humans use to produce high-quality work.</strong></p>
+<p>Enter agent workflows. By using agents, we can guide the LLM through multiple iterative cycles: planning, researching, drafting, reflecting, and revising. Instead of writing an essay in one go, an LLM agent can plan an outline, decide if more information is needed, write a draft, read it for flaws, and iterate. This process is crucial for improving the quality of AI outputs and mirrors the way human writers refine their work over time. <a href="https://www.cognition.ai/blog/introducing-devin?utm_campaign=The+Batch&amp;utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz--QGCoaEh42QGUTnfoPl5an-ds0dVuJeNXLRxVO4h72DKVH187SV0hJ06VkEN-DlSHanUDK">Recent experiments</a> show that when GPT-3.5 is wrapped in an iterative agent loop, it can outperform GPT-4 in tasks like coding — underscoring the power of extending computation to inference, not just model size.</p>
+<h2 id="the-modern-contradiction-human-designed-logic-loops"><strong>The Modern Contradiction: Human-Designed Logic Loops</strong><a hidden class="anchor" aria-hidden="true" href="#the-modern-contradiction-human-designed-logic-loops">#</a></h2>
+<p>Despite the impressive results, there’s a fundamental contradiction at play. The agentic systems we see today — those that iterate, revise, and self-reflect — are still fundamentally tied to human-designed logic loops. We create the rules that dictate when the LLM should plan, search for more information, or revise. This is still a far cry from Sutton’s vision of minimizing human intervention entirely and letting computation handle everything autonomously.</p>
+<p>Rodney Brooks’ critique of Sutton’s vision is relevant here. Brooks argued that eliminating human input from AI design is impractical and can be counterproductive. Human knowledge, when thoughtfully applied, reduces the need for excessive computation and helps avoid pitfalls that purely data-driven models might fall into — like the inability to recognize a stop sign with tape on it because the model lacks a fundamental understanding of what colors stop signs are supposed to be.</p>
+<p>This tension raises a key question: <strong>are agentic systems that rely on human-designed loops really a step towards the kind of autonomy Sutton envisioned, or are they simply shifting human ingenuity to a different part of the process?</strong> Perhaps the real “better lesson” is that true AI advancement requires a balance — an interplay between computational power and human expertise. We need methods that can utilize vast computation, but we also need mechanisms to make that computation efficient, targeted, and meaningful.</p>
+<h2 id="creaos-vision-the-next-gen-ai-agent-infrastructure"><strong>CREAO’s Vision: The Next-Gen AI Agent Infrastructure</strong><a hidden class="anchor" aria-hidden="true" href="#creaos-vision-the-next-gen-ai-agent-infrastructure">#</a></h2>
+<p><strong>At <a href="https://www.creao.ai/">CREAO</a>, we believe the future lies in bridging this gap. Our mission is to create an infrastructure that allows AI to design agents with minimal human intervention.</strong> The vision is that agents should be able to dynamically create, adapt, and execute workflows without relying on pre-specified logic crafted by humans. Imagine an agent that can draft a document, determine when it needs more information, gather that information, and integrate it — all without explicit instructions.</p>
+<p>We want to build agents that plug into any system and perform tasks as adaptable human labor would. Just like humans can learn and adapt to different tasks with sufficient training, the agents we envision should be able to do the same. Whether it’s performing diagnostics on software, drafting and revising content, or conducting complex multi-step planning — our goal is to develop agents that can handle it all, autonomously.</p>
+<p>The infrastructure we are building at CREAO is designed to support this vision. We aim to create a foundation where agents can learn to build their own workflows, iteratively improve, and plug into diverse environments without requiring a pre-designed script for every situation. This is the next step towards realizing Sutton’s dream — a step towards agents that are not just executors of human-designed logic but are, in essence, designers of their own intelligence.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="next" href="http://localhost:1313/posts/post1_241004/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Building a QR Code Generator Web App with ChatGPT: A Journey from Marketing to Coding Success</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="http://localhost:1313/">Creao&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

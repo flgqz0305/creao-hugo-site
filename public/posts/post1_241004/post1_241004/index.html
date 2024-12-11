@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Building a QR Code Generator Web App with ChatGPT: A Journey from Marketing to Coding Success | Creao&#39;s Blog</title>
+<meta name="keywords" content="artificial intelligence, gen ai">
+<meta name="description" content="Introduction: The Beginning of My QR Code Journey
+It all started with a simple need. I was working on a marketing campaign and wanted to use QR codes to make it easy for customers to access a landing page. However, as I began searching for QR code generation tools online, I quickly realized that most services charge a fee for features like color customization and high-quality downloads.
+Frustrated with the paywalls, I thought, &ldquo;Why should I pay for something I can build myself?&rdquo; As a developer with some experience, I knew building a QR code generator wasn’t rocket science. Plus, I had heard of platforms like Cursor and Replit, which promised to help developers code without needing to write a lot of code. However, when I explored these tools, I found that setting them up felt like more effort than I wanted to invest for this project.">
+<meta name="author" content="Clark Gao">
+<link rel="canonical" href="http://localhost:1313/posts/post1_241004/post1_241004/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css" integrity="sha256-1vzSCk&#43;4bvpN&#43;sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/post1_241004/post1_241004/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Creao&#39;s Blog (Alt + H)">Creao&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/tags/" title="🏷️ Tags">
+                    <span>🏷️ Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="📁 Archives">
+                    <span>📁 Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 Search (Alt &#43; /)" accesskey=/>
+                    <span>🔍 Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.creao.ai" title="Creao.ai">
+                    <span>Creao.ai</span>&nbsp;
+                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Building a QR Code Generator Web App with ChatGPT: A Journey from Marketing to Coding Success
+    </h1>
+    <div class="post-meta"><span title='2024-10-04 15:27:58 +0800 HKT'>October 4, 2024</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Clark Gao
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="introduction-the-beginning-of-my-qr-code-journey">Introduction: The Beginning of My QR Code Journey<a hidden class="anchor" aria-hidden="true" href="#introduction-the-beginning-of-my-qr-code-journey">#</a></h2>
+<p>It all started with a simple need. I was working on a <strong>marketing campaign</strong> and wanted to use <strong>QR codes</strong> to make it easy for customers to access a landing page. However, as I began searching for QR code generation tools online, I quickly realized that most services charge a fee for features like color customization and high-quality downloads.</p>
+<p>Frustrated with the paywalls, I thought, &ldquo;Why should I pay for something I can build myself?&rdquo; As a developer with some experience, I knew building a QR code generator wasn’t rocket science. Plus, I had heard of platforms like <strong>Cursor</strong> and <strong>Replit</strong>, which promised to help developers code without needing to write a lot of code. However, when I explored these tools, I found that setting them up felt like more effort than I wanted to invest for this project.</p>
+<p>That’s when it hit me: why not try <strong>ChatGPT</strong>? I’d heard about how useful AI could be for coding assistance, and I was curious if it could help me build a functioning web app without having to do all the heavy lifting. So, I decided to experiment. This blog post documents how I successfully built a QR code generator web app with ChatGPT&rsquo;s assistance, the lessons I learned, and how you can do it too.</p>
+<hr>
+<h2 id="setting-up-the-basics-tools-youll-need">Setting Up the Basics: Tools You&rsquo;ll Need<a hidden class="anchor" aria-hidden="true" href="#setting-up-the-basics-tools-youll-need">#</a></h2>
+<p>Before we dive into the coding, let&rsquo;s make sure you have the <strong>basic setup</strong> ready. Even though ChatGPT can provide a lot of the code, you&rsquo;ll still need a few essential tools to get started:</p>
+<h3 id="1-text-editor"><strong>1. Text Editor</strong><a hidden class="anchor" aria-hidden="true" href="#1-text-editor">#</a></h3>
+<p>You’ll need a simple text editor to write your code. Some popular options include:</p>
+<ul>
+<li><strong>VS Code</strong>: A powerful, free code editor with a lot of features for web development.</li>
+<li><strong>Sublime Text</strong>: A lightweight, fast editor perfect for small projects.</li>
+<li><strong>Notepad++</strong>: Another free and easy-to-use option, especially for beginners.</li>
+</ul>
+<h3 id="2-web-browser"><strong>2. Web Browser</strong><a hidden class="anchor" aria-hidden="true" href="#2-web-browser">#</a></h3>
+<p>For testing your app, you’ll need a browser like <strong>Google Chrome</strong> or <strong>Firefox</strong>. Most modern browsers have built-in developer tools that will help you test and debug your web app.</p>
+<h3 id="3-running-your-html"><strong>3. Running Your HTML</strong><a hidden class="anchor" aria-hidden="true" href="#3-running-your-html">#</a></h3>
+<p>Once you have your code written, you’ll want to open it in your browser. Here’s a simple way to run the app locally:</p>
+<ol>
+<li><strong>Write the HTML file</strong>: Save your file as <code>index.html</code> in a folder on your computer.</li>
+<li><strong>Open in Browser</strong>: Double-click on the <code>index.html</code> file or drag it into a browser window. This will run your static HTML file directly.</li>
+<li>If you want a more robust way to run your app, you can use a tool like Python or a Node.js server, but for this basic setup, you can just open the HTML file directly in your browser.</li>
+</ol>
+<hr>
+<h2 id="building-the-qr-code-generator-web-app-with-chatgpt">Building the QR Code Generator Web App with ChatGPT<a hidden class="anchor" aria-hidden="true" href="#building-the-qr-code-generator-web-app-with-chatgpt">#</a></h2>
+<p>With my tools set up and my goal defined, I turned to ChatGPT to help me write the code for a QR code generator. Here&rsquo;s how the process unfolded.</p>
+<h3 id="1-establishing-the-basic-structure">1. <strong>Establishing the Basic Structure</strong><a hidden class="anchor" aria-hidden="true" href="#1-establishing-the-basic-structure">#</a></h3>
+<p>To begin, I asked ChatGPT for a basic HTML page setup with an input field and a button to generate the QR code. Here’s the initial structure ChatGPT suggested:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;QR Code Generator&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;wrapper&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;url-input&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Enter the URL here&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;generate-btn&#34;</span>&gt;Generate QR Code&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;qr-container&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><p>I copied this code into my text editor and saved it as <code>index.html</code>. After opening it in my browser, I could see the basic interface, though the QR code functionality wasn’t there yet. But this was a great start!</p>
+<h3 id="2-integrating-a-qr-code-library">2. <strong>Integrating a QR Code Library</strong><a hidden class="anchor" aria-hidden="true" href="#2-integrating-a-qr-code-library">#</a></h3>
+<p>Next, I needed to generate the QR codes. ChatGPT introduced me to a JavaScript library called <strong>QRious</strong>. This library makes it easy to generate QR codes in the browser. ChatGPT provided a script tag to include the library and gave me code to generate a QR code based on the URL input.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- Include QRious Library --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js&gt;&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;generate-btn&#39;</span>).<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;url-input&#39;</span>).<span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">trim</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">url</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;&#39;</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;Please enter a URL.&#39;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">qr</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">QRious</span>({
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">element</span><span style="color:#f92672">:</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;qr-container&#39;</span>),
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">url</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">size</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">256</span>,
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>With this code, users could now enter a URL, click &ldquo;Generate QR Code,&rdquo; and see a QR code appear on the screen. It worked like magic!</p>
+<h3 id="3-adding-color-customization">3. <strong>Adding Color Customization</strong><a hidden class="anchor" aria-hidden="true" href="#3-adding-color-customization">#</a></h3>
+<p>As a marketer, I wanted more than just black-and-white QR codes. I asked ChatGPT how I could let users change the color of their QR codes, and it suggested adding a color picker input:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color-input&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#000000&#34;</span>&gt;
+</span></span></code></pre></div><p>ChatGPT then modified the QRious initialization to use the color selected by the user:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">qr</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">QRious</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">element</span><span style="color:#f92672">:</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;qr-container&#39;</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">url</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">size</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">256</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">foreground</span><span style="color:#f92672">:</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;color-input&#39;</span>).<span style="color:#a6e22e">value</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>This added a fun level of interactivity and allowed users to customize the QR code to their branding or style preferences.</p>
+<h3 id="4-implementing-animation-effects">4. <strong>Implementing Animation Effects</strong><a hidden class="anchor" aria-hidden="true" href="#4-implementing-animation-effects">#</a></h3>
+<p>To make the app more engaging, I wanted to add animations to the QR code generation process. I asked ChatGPT for ideas, and it introduced me to <strong>anime.js</strong>, a JavaScript library for creating animations. We decided to animate the QR code pieces as they appeared on the screen.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- Include anime.js Library --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js&gt;&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>We added an animation that would make the QR code pieces &ldquo;break apart&rdquo; and then come together again:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#75715e">// Animation code using anime.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">anime</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">targets</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#qr-container canvas&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">scale</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">duration</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2000</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">easing</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;easeInOutQuad&#39;</span>
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>This made the app feel more dynamic and exciting for users.</p>
+<h3 id="5-adding-download-functionality">5. <strong>Adding Download Functionality</strong><a hidden class="anchor" aria-hidden="true" href="#5-adding-download-functionality">#</a></h3>
+<p>To complete the functionality, I needed a way for users to download their QR code once it was generated. ChatGPT helped me add a download button:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;download-btn&#34;</span>&gt;Download QR Code&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span></code></pre></div><p>And provided JavaScript code to trigger the download:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span>document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;download-btn&#39;</span>).<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">canvas</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;#qr-container canvas&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">link</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;a&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">link</span>.<span style="color:#a6e22e">href</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">toDataURL</span>(<span style="color:#e6db74">&#39;image/png&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">link</span>.<span style="color:#a6e22e">download</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;qr_code.png&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">link</span>.<span style="color:#a6e22e">click</span>();
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>Now, users could not only generate but also download their custom QR codes.</p>
+<hr>
+<h2 id="deploying-the-web-app-on-vercel">Deploying the Web App on Vercel<a hidden class="anchor" aria-hidden="true" href="#deploying-the-web-app-on-vercel">#</a></h2>
+<p>With the core features in place, it was time to deploy the app. ChatGPT recommended using <strong>Vercel</strong>, a platform designed for easily deploying web applications. After pushing the code to a GitHub repository and linking it with Vercel, I was able to deploy the app live with just a few clicks.</p>
+<p><strong>Check out the live app here:</strong> <a href="https://qr-code-generator-nine-umber.vercel.app/">QR Code Generator Web App</a></p>
+<hr>
+<h2 id="final-product-features">Final Product Features<a hidden class="anchor" aria-hidden="true" href="#final-product-features">#</a></h2>
+<ul>
+<li><strong>QR Code Generation:</strong> Users can input a URL to generate a QR code.</li>
+<li><strong>Color Customization:</strong> Users can select from various colors for their QR code.</li>
+<li><strong>Engaging Animation:</strong> The QR code pieces animate upon generation, enhancing the user experience.</li>
+<li><strong>Downloadable QR Codes:</strong> Users can download their customized QR codes as PNG files.</li>
+</ul>
+<hr>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Building this QR code generator web app was an enriching experience that combined coding, creativity, and problem-solving. Leveraging ChatGPT not only made the development process smoother but also provided a learning opportunity to deepen my understanding of web technologies.</p>
+<p>If you&rsquo;re embarking on a coding project, I highly recommend utilizing AI tools like ChatGPT. Whether you&rsquo;re a beginner or an experienced developer, it can provide valuable insights, troubleshoot issues, and inspire innovative solutions.</p>
+<hr>
+<h2 id="share-your-thoughts">Share Your Thoughts<a hidden class="anchor" aria-hidden="true" href="#share-your-thoughts">#</a></h2>
+<p>I&rsquo;d love to hear your feedback or experiences with similar projects. Feel free to try it out and share your thoughts!</p>
+<hr>
+<p><strong>Happy Coding!</strong></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/artificial-intelligence/">Artificial Intelligence</a></li>
+      <li><a href="http://localhost:1313/tags/gen-ai/">Gen Ai</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/post3_241104/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>Bridging Sutton’s Vision with Modern AI Design</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="http://localhost:1313/">Creao&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
